@@ -1,0 +1,93 @@
+---
+const features = [
+  'Intelligent email routing',
+  'Multi-channel support',
+  'Real-time analytics',
+  'Newsletter management',
+  'REST APIs & SDKs',
+  'Email templates',
+  'Bounce handling',
+  'Priority support'
+];
+
+const plans = [
+  {
+    name: 'Self-Hosted',
+    description: 'Host Mailflare on your own infrastructure',
+    price: 'Free',
+    details: 'Open Source',
+    features: features.map(feature => ({
+      text: feature,
+      included: true
+    })),
+    cta: 'Get Started',
+    highlight: false
+  },
+  {
+    name: 'Cloud',
+    description: 'Let us handle the infrastructure for you',
+    price: '$49',
+    details: 'per month',
+    features: features.map(feature => ({
+      text: feature,
+      included: true
+    })),
+    cta: 'Start Free Trial',
+    highlight: true
+  }
+];
+---
+
+<section id="pricing" class="py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 sm:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-base font-semibold leading-7 text-indigo-400">Pricing</h2>
+      <p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">Choose your deployment model</p>
+      <p class="mt-6 text-lg leading-8 text-zinc-400">
+        Whether you want to self-host or use our cloud solution, we've got you covered.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2">
+      {plans.map((plan, planIdx) => (
+        <div class={`relative p-2 ${planIdx === 1 ? 'sm:-ml-4' : 'sm:-mr-4'}`}>
+          <div class={`relative rounded-2xl ${plan.highlight ? 'bg-gradient-to-b from-indigo-500/20 to-purple-500/20 p-px' : ''}`}>
+            <div class="relative rounded-2xl bg-zinc-900/50 px-6 py-8 backdrop-blur-xl sm:px-8">
+              <div class="flex items-center justify-between gap-x-4">
+                <h3 class="text-lg font-semibold leading-8 text-white">{plan.name}</h3>
+                {plan.highlight && (
+                  <span class="rounded-full bg-indigo-500/10 px-2.5 py-1 text-xs font-semibold leading-5 text-indigo-400">Popular</span>
+                )}
+              </div>
+              <p class="mt-4 text-sm leading-6 text-zinc-400">{plan.description}</p>
+              <p class="mt-6 flex items-baseline gap-x-1">
+                <span class="text-4xl font-bold tracking-tight text-white">{plan.price}</span>
+                <span class="text-sm font-semibold leading-6 text-zinc-400">{plan.details}</span>
+              </p>
+              <a
+                href={plan.highlight ? '#cloud-signup' : 'https://github.com/mailflare/mailflare'}
+                class={`mt-6 block rounded-full px-6 py-2.5 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
+                  plan.highlight
+                    ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-sm hover:opacity-90'
+                    : 'border border-zinc-800/50 text-white hover:border-zinc-800'
+                }`}
+              >
+                {plan.cta}
+              </a>
+              <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-zinc-400">
+                {plan.features.map(feature => (
+                  <li class="flex gap-x-3">
+                    <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                    </svg>
+                    {feature.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section> 
